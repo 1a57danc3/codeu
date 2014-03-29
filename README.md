@@ -1,4 +1,6 @@
-这个是一个运行在SAE（Sina App Engine）上，基于Tornado的简单的代码分享网站。见：http://codeu.sianapp.com
+这个是一个运行在SAE（Sina App Engine）上，基于Tornado的简单的代码分享网站。
+
+DEMO:  http://codeu.sinaapp.com
 
 ## 使用方法
 
