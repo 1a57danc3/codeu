@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>获取百度网盘外链地址</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+        <link  href="http://libs.baidu.com/bootstrap/2.0.4/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen" />
+        <style type="text/css">
+            body {
+                padding-top: 40px;
+                padding-bottom: 40px;
+                background-color: #f5f5f5;
+            }
+            .form_pan {
+                max-width: 650px;
+                padding: 19px 29px 29px;
+                margin: 0 auto 20px;
+                background-color: #fff;
+                border: 1px solid #e5e5e5;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                border-radius: 5px;
+                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            }
+            .form_pan .form_pan-heading {
+                margin-bottom: 10px;
+            }
+        </style>
+        <script type="text/javascript">
+            function getNewLink() {
+                var inputUrl = document.getElementById("inputUrl");
+                var file_value = "";
+                var file_type = document.getElementsByName("file_type");
+                var hostname = "http://" + window.location.hostname + "/";
+                for (var i = 0; i < file_type.length; i++) {
+                    if (file_type[i].checked) {
+                        file_value = file_type[i].value;
+                        break;
+                    }
+                };
+                var file_other = document.getElementById("file_other");
+                file_other_text = document.getElementById("file_other_text");
+                var outputUrl = document.getElementById("outputUrl");
+                var abc = inputUrl.value.substring(inputUrl.value.indexOf('=') + 1).replace('&uk=', 'v');
+                var reg = /^\d+v\d+$/;
+                if (!reg.test(abc)) {
+                    alert("链接错误！");
+                    inputUrl.focus();
+                    return false;
+                }
+                if (file_value == 'other') {
+                    if (file_other_text.value.length == 0) {
+                        alert("扩展名不能为空！");
+                        inputUrl.focus();
+                        return false;
+                    }
+                    outputUrl.value = hostname + abc + "." + file_other_text.value;
+                } else {
+                    outputUrl.value = hostname + abc + "." + file_value;
+                }
+            }
+
+            function fileOtherTextChange() {
+                if (file_other.checked == true) {
+                    file_other_text.disabled = false;
+                    file_other_text.focus();
+                } else {
+                    file_other_text.disabled = true;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class='container'>
+            <form class="form_pan" id="pan_form">
+                <h2 class="form_pan-heading">百度网盘文件永久外链</h2>
+                <p>
+                    请输入链接：
+                    <input type="text" class="input-medium search-query" style="width:550px;" id="inputUrl" value="" onmouseover="this.select()"  />
+                </p>
+                <p>
+                    （例如：<a target="_blank" style="text-decoration:none" href="http://pan.baidu.com/share/link?shareid=430100&amp;uk=2987247908">http://pan.baidu.com/share/link?shareid=430100&amp;uk=2987247908</a>）
+                </p>
+                <p>
+                    文件的扩展名：
+                    <input type="radio" class="radio" name="file_type" id="file_mp3" value="mp3" onchange="fileOtherTextChange()" checked />
+                    mp3
+                    <input type="radio" class="radio" name="file_type" id="file_png" value="png" onchange="fileOtherTextChange()" />
+                    png
+                    <input type="radio" class="radio" name="file_type" id="file_exe" value="exe" onchange="fileOtherTextChange()" />
+                    exe
+                    <input type="radio" class="radio" name="file_type" id="file_zip" value="zip" onchange="fileOtherTextChange()" />
+                    zip
+                    <input type="radio" class="radio" name="file_type" id="file_mp4" value="mp4" onchange="fileOtherTextChange()" />
+                    mp4
+                    <input type="radio" class="radio" name="file_type" id="file_other" value="other" onchange="fileOtherTextChange()" />
+                    其他格式
+                    <input type="text" class="input-medium search-query" style="width:80px;" id="file_other_text" disabled />
+                </p>
+                <p>
+                    <input type="button" class="btn" id="getLinkBtn" value="获取" onclick="getNewLink()" />
+                    <input type="reset" class="btn" value="清空" onclick="this.form.reset();" />
+                </p>
+                <p>
+                    <b>永久链接为：</b>
+                    <input type="text" class="input-medium search-query" style="width:550px;" id="outputUrl" value="" onmouseover="this.select()" />
+                </p>
+                <p>
+                    （可直接下载）
+                </p>
+            </form>
+        </div>
+    </body>
+</html>

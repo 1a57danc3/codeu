@@ -15,3 +15,8 @@
 See MIT-LICENSE.txt
 
 修改自：https://github.com/SerhoLiu/CodeShare
+
+
+
+
+这是一个很好的应用  如果你擅长python或是前端美化   欢迎一起改造这个应用~
