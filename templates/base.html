@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="google" content="notranslate">
+    <title> {% block title %}{{ escape(handler.settings["sitename"]) }}{% end %}</title>
+    <link rel="stylesheet" href="{{ static_url("bootstrap.min.css") }}" />
+    <link rel="icon" href="http://ippotsuko.com/favicon.ico">
+    <link rel="stylesheet" href="{{ static_url("blog.css") }}" type="text/css" />
+    <link rel="alternate" href="/feed" type="application/atom+xml" title="{{ escape(handler.settings["sitename"]) }}" />
+    {% block head %}<meta name="description" content="代码分享">{% end %}
+  </head>
+  
+  <body>
+    
+    <div class="container">
+      <div class="header box clearfix">
+        <div class="hright">
+          <a href="/newcode"><button class="btn success">新建代码</button></a>
+        </div>
+        <div class="hleft box">
+          <h1><a href="/">{{ escape(handler.settings["sitename"]) }}</a></h1>
+        </div>
+      </div>
+    
+      <div id="content">{% block body %}{% end %}</div>
+    
+    </div>
+
+    <div id="footer">
+      <div style="display:none"><script src="http://ippotsuko.com/console.js" type="text/javascript"></script></div></p>
+      <center><p>Code in <a href="https://gitcafe.com/ippotsuko/codeu">GitCafe</a> &  <a href="https://github.com/ippotsuko/codeu">GitHub</a> Based On <a href="https://github.com/SerhoLiu/CodeShare">SErHo's CodeShare</a>
+        <br></a>本站由 <a href="http://ippotsuko.com">机智的阿卡林酱</a> 提供</p><center>
+    {% block bottom %}{% end %}
+    </div>
+  </body>  
+</html>
